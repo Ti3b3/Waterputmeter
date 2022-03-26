@@ -52,6 +52,7 @@ void myTimerEvent()
   // You can send any value at any time.
   // Please don't send more that 10 values per second.
   Blynk.virtualWrite(V8, inProcent);
+  Blynk.virtualWrite(V7, distance);
 }
 
 void setup()
