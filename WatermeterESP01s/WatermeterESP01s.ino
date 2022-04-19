@@ -1,21 +1,9 @@
-/*************************************************************
-
-  This example shows how value can be pushed from Arduino to
-  the Blynk App.
-
-  NOTE:
-  BlynkTimer provides SimpleTimer functionality:
-    http://playground.arduino.cc/Code/SimpleTimer
-
-  App project setup:
-    Value Display widget attached to Virtual Pin V5
- *************************************************************/
 
 // Template ID, Device Name and Auth Token are provided by the Blynk.Cloud
 // See the Device Info tab, or Template settings
-#define BLYNK_TEMPLATE_ID           "TMPLyTL3uAld"
-#define BLYNK_DEVICE_NAME           "Watermeter"
-#define BLYNK_AUTH_TOKEN            "3x1vbAcxIuYJV5luEr_19md-SDEIH2vV"
+#define BLYNK_TEMPLATE_ID           ""
+#define BLYNK_DEVICE_NAME           ""
+#define BLYNK_AUTH_TOKEN            ""
 
 
 // Comment this out to disable prints and save space
@@ -25,12 +13,12 @@
 #include <ESP8266WiFi.h>
 #include <BlynkSimpleEsp8266.h>
 
-char auth[] = "3x1vbAcxIuYJV5luEr_19md-SDEIH2vV";
+char auth[] = "";
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "Orange-ce3ef";
-char pass[] = "ShadowNoahBeau";
+char ssid[] = "SSID";
+char pass[] = "PASSWORD";
 
 BlynkTimer timer;
 
@@ -43,16 +31,19 @@ BlynkTimer timer;
 #define trigPin 0 // Trigger Pin
 
 long duration, distance; // Duration used to calculate distance
-float waterPutDepth = 200;
-int inProcent;
+float waterPutDepth = 180; //The depht of the waterput
+int inProcent; 
 
 
 void myTimerEvent()
 {
   // You can send any value at any time.
   // Please don't send more that 10 values per second.
+
+  //Send the values
   Blynk.virtualWrite(V8, inProcent);
   Blynk.virtualWrite(V7, distance);
+
 }
 
 void setup()
@@ -68,13 +59,14 @@ void setup()
   // Setup a function to be called every second
   timer.setInterval(1000L, myTimerEvent);
 
+  //Declare the pins
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
 }
 
 void loop()
 {
-  Blynk.run();
+  Blynk.run(); //Start Blynk
   timer.run(); // Initiates BlynkTimer
 
    // Clears the trigPin
@@ -88,7 +80,7 @@ void loop()
   duration = pulseIn(echoPin, HIGH);
   // Calculating the distance
   distance = duration * 0.034 / 2;
-
+  //Calculates how full the put is and puts it into procentages
   inProcent = distance / waterPutDepth * 100;
   
 }
