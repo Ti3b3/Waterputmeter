@@ -6,3 +6,5 @@
 ### And this is a preview of the PCB
 <img src="https://github.com/Ti3b3/Waterputmeter/blob/main/Images/Screenshot%202022-04-19%20at%2018-10-46%20Online%20Gerber%20Viewer%20-%20PCB%20Prototype%20the%20Easy%20Way%20-%20PCBWay.png?raw=true">
 
+### And here you can see how you need to connect everything
+<img src="https://github.com/Ti3b3/Waterputmeter/blob/main/Images/Schema.PNG?raw=true">
